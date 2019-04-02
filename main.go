@@ -186,13 +186,14 @@ func work(root string, files []string) {
 					l := line
 					if todoRegex.FindString(line) != "" {
 						yetTrue = true
-					}
+					} else {
 					
-					if yetTrue == true {
-						if commentRegex.FindString(l) != "" {
-							content = fmt.Sprintf("%s \n %s", content, strings.ReplaceAll(line, "NOTE", ""))
-						} else {
-							yetTrue = false
+						if yetTrue == true {
+							if commentRegex.FindString(l) != "" {
+								content = fmt.Sprintf("%s \n %s", content, strings.ReplaceAll(line, "NOTE", ""))
+							} else {
+								yetTrue = false
+							}
 						}
 					}
 				}
