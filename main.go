@@ -179,9 +179,9 @@ func work(root string, files []string) {
 				todo := todoRegex.FindString(line)
 
 				content := ""
-				lineCount := 0
-				for _, line := range lines {
-					if lineCount < 25 {
+				
+				for i, line := range lines {
+					if i < 25 {
 						content = fmt.Sprintf("%s <br /> %s", content, line)
 					}
 				}
