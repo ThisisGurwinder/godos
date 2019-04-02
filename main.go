@@ -178,13 +178,16 @@ func work(root string, files []string) {
 				ex := existingRegex.FindString(line)
 				todo := todoRegex.FindString(line)
 
-				var content string
+				content := ""
+				lineCount := 0
 				for i, line := range lines {
-					bodyRegex := fmt.Sprintf(BODY_REGEX, todo)
-
-					content = fmt.Sprintf("%s \n %s", content, bodyRegex.FindString(line))
+					if lineCount < 25 {
+						content = fmt.Sprintf("%s <br /> %s", content, bodyRegex.FindString(line))
+					}
 				}
 
+				fmt.Print("MAGIC HAPPENING BELOW")
+				fmt.Print(content)
 				if ex != "" {
 
 					for i, is := range fileIssuesCache {
