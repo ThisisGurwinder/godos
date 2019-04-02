@@ -164,7 +164,7 @@ func work(root string, files []string) {
 			removed := 0
 
 			fmt.Println("[Todos] Checking file:", relativeFilePath)
-
+			fmt.Println(" Is Magic Happening")
 			lines, err := ReadFileLines(file)
 			logOnError(err)
 
@@ -186,8 +186,8 @@ func work(root string, files []string) {
 					}
 				}
 
-				fmt.Print("MAGIC HAPPENING BELOW")
-				fmt.Print(content)
+				fmt.Println("MAGIC HAPPENING BELOW")
+				fmt.Println(content)
 				if ex != "" {
 
 					for i, is := range fileIssuesCache {
