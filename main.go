@@ -129,7 +129,7 @@ func work(root string, files []string) {
 		fmt.Println("[Todos] You need to setup the repo running 'todos setup'")
 
 	} else {
-		
+
 		ts := oauth2.StaticTokenSource(
 			&oauth2.Token{AccessToken: global.Config.GithubToken},
 		)
@@ -178,6 +178,13 @@ func work(root string, files []string) {
 				ex := existingRegex.FindString(line)
 				todo := todoRegex.FindString(line)
 
+				var content string
+				for i, line := range lines {
+					bodyRegex := fmt.Sprintf(BODY_REGEX, todo)
+
+					content = fmt.Sprintf("%s \n %s", content, bodyRegex.FindString(line))
+				}
+
 				if ex != "" {
 
 					for i, is := range fileIssuesCache {
@@ -199,7 +206,8 @@ func work(root string, files []string) {
 
 						filename := path.Base(file)
 
-						body := fmt.Sprintf(ISSUE_BODY, filename, fmt.Sprintf(GITHUB_FILE_URL, owner, repo, branch, relativeFilePath))
+						body := fmt.Sprintf(ISSUE_BODY, filename, fmt.Sprintf(GITHUB_FILE_URL, owner, repo, branch, relativeFilePath), content)
+
 						issue, _, err := client.Issues.Create(context.TODO(), owner, repo, &github.IssueRequest{Title: &todo, Body: &body})
 						logOnError(err)
 
