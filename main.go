@@ -190,7 +190,7 @@ func work(root string, files []string) {
 					
 					if yetTrue == true {
 						if commentRegex.FindString(l) != "" {
-							
+							content = fmt.Sprintf("%s \n %s", content, strings.ReplaceAll(line, "*", ""))
 						} else {
 							yetTrue = false
 						}
@@ -198,15 +198,16 @@ func work(root string, files []string) {
 				}
 				yetTrue = true
 
-				code_block := "```go"
+				code_block := "\n ```go"
 				for _, line := range lines {
 					code_block = fmt.Sprintf("%s \n %s", code_block, line)
 				}
 				code_block = fmt.Sprintf("%s \n %s", code_block, "```")
 				code_block = fmt.Sprintf("%s", code_block)
 				
-				content = fmt.Sprintf("%s <br /> %s", content, code_block)
-
+				content = fmt.Sprintf("%s \n %s", content, code_block)
+	
+				content = fmt.Sprintf("%s", content)
 				if ex != "" {
 
 					for i, is := range fileIssuesCache {
