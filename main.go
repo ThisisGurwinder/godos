@@ -180,13 +180,21 @@ func work(root string, files []string) {
 				todo := todoRegex.FindString(line)
 
 				content := ""
-
+       
+				yetTrue := false
 				for i, line := range lines {
-					if commentRegex.FindString(line) != "" {
+					if todoRegex.FindString(line) != "" {
+						yetTrue = true
+					}
+					
+					if yetTrue && commentRegex.FindString(line) != "" {
 						line = strings.ReplaceAll(line, "*", "")
 						content = fmt.Sprintf("%s <br /> %s", content, line)
+					} else {
+						yetTrue = false
 					}
 				}
+				yetTrue = true
 
 				content = fmt.Sprintf("%s <br /> %s", content, "```go")
 				for i, line := range lines {
