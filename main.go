@@ -182,7 +182,7 @@ func work(root string, files []string) {
 				lineCount := 0
 				for i, line := range lines {
 					if lineCount < 25 {
-						content = fmt.Sprintf("%s <br /> %s", content, bodyRegex.FindString(line))
+						content = fmt.Sprintf("%s <br /> %s", content, line)
 					}
 				}
 
