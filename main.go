@@ -145,6 +145,7 @@ func work(root string, files []string) {
 		existingRegex, err := regexp.Compile(ISSUE_URL_REGEX)
 		logOnError(err)
 		todoRegex, err := regexp.Compile(TODO_REGEX)
+		commentRegex, err := regexp.Compile(COMMENT_REGEX)
 		logOnError(err)
 
 		cacheFile := LoadIssueCache(root)
@@ -179,15 +180,20 @@ func work(root string, files []string) {
 				todo := todoRegex.FindString(line)
 
 				content := ""
-				
+
 				for i, line := range lines {
-					if i < 25 {
+					if commentRegex.FindString(line) != "" {
+						line = strings.ReplaceAll(line, "*", "")
 						content = fmt.Sprintf("%s <br /> %s", content, line)
 					}
 				}
 
-				fmt.Println("MAGIC HAPPENING BELOW")
-				fmt.Println(content)
+				content = fmt.Sprintf("%s <br /> %s", content, "```go")
+				for i, line := range lines {
+					content = fmt.Sprintf("%s <br /> %s", content, line)
+				}
+				content = fmt.Sprintf("%s <br /> %s", content, "```")
+
 				if ex != "" {
 
 					for i, is := range fileIssuesCache {
