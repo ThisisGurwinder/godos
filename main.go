@@ -183,12 +183,13 @@ func work(root string, files []string) {
        
 				yetTrue := false
 				for _, line := range lines {
+					l := line
 					if todoRegex.FindString(line) != "" {
 						yetTrue = true
 					}
 					
 					if yetTrue == true {
-						if commentRegex.FindString(line) != "" {
+						if commentRegex.FindString(l) != "" {
 							
 						} else {
 							yetTrue = false
