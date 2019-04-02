@@ -187,7 +187,7 @@ func work(root string, files []string) {
 						yetTrue = true
 					}
 					
-					if yetTrue && commentRegex.FindString(line) != "" {
+					if yetTrue == true && commentRegex.FindString(line) != "" {
 						line = strings.ReplaceAll(line, "*", "")
 						content = fmt.Sprintf("%s <br /> %s", content, line)
 					} else {
