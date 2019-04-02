@@ -190,8 +190,10 @@ func work(root string, files []string) {
 					
 						if yetTrue == true {
 							if commentRegex.FindString(l) != "" {
-								content = fmt.Sprintf("%s \n %s", content, strings.ReplaceAll(line, "NOTE", ""))
-								content = fmt.Sprintf("%s \n %s", content, strings.ReplaceAll(line, ": ", ""))
+								lineContent = strings.ReplaceAll(line, `NOTE`, "")
+								lineContent = strings.ReplaceAll(lineContent, `: `, "")
+								lineContent = strings.ReplaceAll(lineContent, `* `, "")
+								content = fmt.Sprintf("%s \n %s", content, lineContent)
 							} else {
 								yetTrue = false
 							}
