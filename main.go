@@ -182,7 +182,7 @@ func work(root string, files []string) {
 				content := ""
        
 				yetTrue := false
-				for i, line := range lines {
+				for _, line := range lines {
 					if todoRegex.FindString(line) != "" {
 						yetTrue = true
 					}
@@ -197,7 +197,7 @@ func work(root string, files []string) {
 				yetTrue = true
 
 				content = fmt.Sprintf("%s <br /> %s", content, "```go")
-				for i, line := range lines {
+				for _, line := range lines {
 					content = fmt.Sprintf("%s <br /> %s", content, line)
 				}
 				content = fmt.Sprintf("%s <br /> %s", content, "```")
