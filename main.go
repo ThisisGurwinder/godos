@@ -180,7 +180,7 @@ func work(root string, files []string) {
 
 				content := ""
 				lineCount := 0
-				for i, line := range lines {
+				for _, line := range lines {
 					if lineCount < 25 {
 						content = fmt.Sprintf("%s <br /> %s", content, line)
 					}
