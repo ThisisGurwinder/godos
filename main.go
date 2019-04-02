@@ -187,11 +187,12 @@ func work(root string, files []string) {
 						yetTrue = true
 					}
 					
-					if yetTrue == true && commentRegex.FindString(line) != "" {
-						line = strings.ReplaceAll(line, "*", "")
-						content = fmt.Sprintf("%s <br /> %s", content, line)
-					} else {
-						yetTrue = false
+					if yetTrue == true {
+						if commentRegex.FindString(line) != "" {
+							content = fmt.Sprintf("%s <br /> %s", content, strings.ReplaceAll(line, "*", ""))
+						} else {
+							yetTrue = false
+						}
 					}
 				}
 				yetTrue = true
