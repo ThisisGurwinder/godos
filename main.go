@@ -198,11 +198,14 @@ func work(root string, files []string) {
 				}
 				yetTrue = true
 
-				content = fmt.Sprintf("%s <br /> %s", content, "```go")
+				code_block := "```go"
 				for _, line := range lines {
-					content = fmt.Sprintf("%s <br /> %s", content, line)
+					code_block = fmt.Sprintf("%s \n %s", code_block, line)
 				}
-				content = fmt.Sprintf("%s <br /> %s", content, "```")
+				code_block = fmt.Sprintf("%s \n %s", code_block, "```")
+				code_block = fmt.Sprintf("%s", code_block)
+				
+				content = fmt.Sprintf("%s <br /> %s", content, code_block)
 
 				if ex != "" {
 
