@@ -194,8 +194,6 @@ func work(root string, files []string) {
 								lineContent = strings.ReplaceAll(lineContent, `: `, "")
 								lineContent = strings.ReplaceAll(lineContent, `* `, "")
 								content = fmt.Sprintf("%s \n %s", content, lineContent)
-							} else {
-								yetTrue = false
 							}
 						}
 					}
