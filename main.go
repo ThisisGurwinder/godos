@@ -226,11 +226,6 @@ func work(root string, files []string) {
 
 					issuesCount++
 					go func(line int, cb chan Issue) {
-
-						branch, _ := GitBranch()
-
-						filename := path.Base(file)
-
 						body := content
 
 						issue, _, err := client.Issues.Create(context.TODO(), owner, repo, &github.IssueRequest{Title: &todo, Body: &body})
