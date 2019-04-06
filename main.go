@@ -231,7 +231,7 @@ func work(root string, files []string) {
 
 						filename := path.Base(file)
 
-						body := fmt.Sprintf(ISSUE_BODY, filename, fmt.Sprintf(GITHUB_FILE_URL, owner, repo, branch, relativeFilePath), content)
+						body := content
 
 						issue, _, err := client.Issues.Create(context.TODO(), owner, repo, &github.IssueRequest{Title: &todo, Body: &body})
 						logOnError(err)
